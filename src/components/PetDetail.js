@@ -1,7 +1,29 @@
 import React from "react";
-import petsData from "../petsData";
+import { useParams, Navigate } from "react-router-dom";
+import { getDataId } from "../api/pets";
+import { useEffect } from "react";
+import { useState } from "react";
 const PetDetail = () => {
-  const pet = petsData[0];
+  const [petsData, setPetsData] = useState([]);
+  const { petId } = useParams();
+  const pet = petsData;
+
+  const callApi = async () => {
+    const data = await getDataId(petId);
+    setPetsData(data.data);
+  };
+
+  useEffect(() => {
+    callApi();
+  }, []);
+
+  if (!pet) {
+    return (
+      <div className="container-noPet">
+        <h1>There is no pet with the id: {petId}</h1>
+      </div>
+    );
+  }
   return (
     <div className="bg-[#F9E3BE] w-screen h-[100vh] flex justify-center items-center">
       <div className="border border-black rounded-md w-[70%] h-[70%] overflow-hidden flex flex-col md:flex-row p-5">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import { addNewPet } from "../api/pets";
 
 const Modal = ({ show, setShowModal }) => {
   const [name, setName] = useState("");
@@ -47,7 +48,10 @@ const Modal = ({ show, setShowModal }) => {
           }}
         />
 
-        <button className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400">
+        <button
+          className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400"
+          onClick={() => addNewPet(name, type, image, available)}
+        >
           Submit
         </button>
       </div>
