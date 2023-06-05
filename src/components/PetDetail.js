@@ -9,11 +9,10 @@ const PetDetail = () => {
   const pet = petsData;
   const [Turki, setTurki] = useState("");
   const callApi = async () => {
-    const data = await getDataId(petId);
-    setPetsData(data.data);
-    if (data.data.name === "Turki") {
-      setTurki("Turki");
-    }
+    const res = await getDataId(petId);
+    setPetsData(res.data);
+
+    setTurki(res.data.name);
   };
 
   useEffect(() => {
@@ -62,14 +61,13 @@ const PetDetail = () => {
           >
             unAdopt
           </button>
-          
-            <button
-              onClick={() => checkIfTurki()}
-              className="w-[70px] border border-black rounded-md  hover:bg-red-400"
-            >
-              Delete
-            </button>
-        
+
+          <button
+            onClick={() => checkIfTurki()}
+            className="w-[70px] border border-black rounded-md  hover:bg-red-400"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
