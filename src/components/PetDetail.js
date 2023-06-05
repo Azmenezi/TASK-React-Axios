@@ -62,14 +62,14 @@ const PetDetail = () => {
           >
             unAdopt
           </button>
-          <Link to="/pets">
+          
             <button
               onClick={() => checkIfTurki()}
               className="w-[70px] border border-black rounded-md  hover:bg-red-400"
             >
               Delete
             </button>
-          </Link>
+        
         </div>
       </div>
     </div>
