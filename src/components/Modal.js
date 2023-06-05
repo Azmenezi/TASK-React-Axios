@@ -50,7 +50,7 @@ const Modal = ({ show, setShowModal }) => {
 
         <button
           className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400"
-          onClick={() => addNewPet(name, type, image, available)}
+          onClick={() => addNewPet(name, type, image, available)+ setShowModal(false)}
         >
           Submit
         </button>

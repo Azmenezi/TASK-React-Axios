@@ -19,17 +19,32 @@ const addNewPet = async (name, type, image, adopted) => {
   });
 };
 
-const updatePetId = async () => {
-  const res = await instance.put(`/pets/`, {
-    name: "notTurki",
-    type: "Dog",
-    image:
-      "https://cdn.discordapp.com/avatars/315122151495696387/f21c67f2ee3ba644a7e4e25096e48f67?size=1024",
+const updatePetId = async (Id, name, type, image) => {
+  const res = await instance.put(`/pets/${Id}`, {
+    name,
+    type,
+    image,
+    adopted: 1,
+  });
+};
+
+const unAdoptId = async (Id, name, type, image) => {
+  const res = await instance.put(`/pets/${Id}`, {
+    name,
+    type,
+    image,
     adopted: 0,
   });
 };
-const deletePetId = async () => {
-  const res = await instance.delete(`/pets/`);
+const deletePetId = async (Id) => {
+  const res = await instance.delete(`/pets/${Id}`);
 };
 
-export { getAllData, getDataId, addNewPet, updatePetId, deletePetId };
+export {
+  getAllData,
+  getDataId,
+  addNewPet,
+  updatePetId,
+  deletePetId,
+  unAdoptId,
+};
