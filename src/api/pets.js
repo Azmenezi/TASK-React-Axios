@@ -1,17 +1,17 @@
 import { instance } from "./index.js";
 
 const getAllData = async () => {
-  const res = await instance.get(`/pets/`);
+  const res = await instance.get(`pets/`);
   return res;
 };
 
 const getDataId = async (Id) => {
-  const res = await instance.get(`/pets/${Id}`);
+  const res = await instance.get(`pets/${Id}`);
   return res;
 };
 
 const addNewPet = async (name, type, image, adopted) => {
-  const res = await instance.post(`/pets/`, {
+  const res = await instance.post(`pets/`, {
     name,
     type,
     image,
@@ -20,7 +20,7 @@ const addNewPet = async (name, type, image, adopted) => {
 };
 
 const updatePetId = async (Id, name, type, image) => {
-  const res = await instance.put(`/pets/${Id}`, {
+  const res = await instance.put(`pets/${Id}`, {
     name,
     type,
     image,
