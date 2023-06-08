@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import { addNewPet } from "../api/pets";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const Modal = ({ show, setShowModal, mutation }) => {
+const Modal = ({ show, setShowModal }) => {
+  const queryClient = useQueryClient();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [image, setImage] = useState("");
   const [available, setAvailable] = useState(0);
+
+  const { mutate: addPet } = useMutation({
+    mutationFn: () => addNewPet(name, type, image, available),
+    onSuccess: () => {
+      // Invalidate and refetch
+
+      queryClient.invalidateQueries({ queryKey: ["pets"] });
+      setShowModal(false);
+    },
+  });
   const handleForm = () => {
-    addNewPet(name, type, image, available);
-    mutation.mutate();
-    setShowModal(false);
+    addPet();
   };
   if (!show) return "";
   return (
